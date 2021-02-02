@@ -1,0 +1,62 @@
+<mat-accordion>
+  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Self aware panel
+      </mat-panel-title>
+      <!-- <mat-panel-description>
+        Currently I am {{panelOpenState ? 'open' : 'closed'}}
+      </mat-panel-description> -->
+    </mat-expansion-panel-header>
+
+    <!-- CONTENT -->
+    <div class="ajust-titles">
+
+      <div class="main-margin">
+        <mat-label class="title-item">Cartão Principal</mat-label>
+        <form fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-around center">
+          <mat-form-field class="width-form-field" fxFlex="45">
+            <mat-label>Favorite food</mat-label>
+            <input matInput [value]="mainInfoHome.title" placeholder="Ex. It makes me feel..." />
+          </mat-form-field>
+
+          <mat-form-field class="width-form-field" fxFlex="45">
+            <mat-label>Leave a comment</mat-label>
+            <input matInput [value]="mainInfoHome.text" placeholder="Ex. It makes me feel..." />
+          </mat-form-field>
+        </form>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <!-- Lista dos itens -->
+      <div *ngFor="let item of itensInfoHome" class="itens-margin">
+
+        <mat-label class="title-item">Cartão Secundário</mat-label>
+        <form fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-around center">
+          <mat-form-field class="width-form-field" fxFlex="30">
+            <mat-label>Icone</mat-label>
+            <input matInput [value]="item.icon" placeholder="Ex. It makes me feel..." />
+          </mat-form-field>
+
+          <mat-form-field class="width-form-field" fxFlex="30">
+            <mat-label>Titulo</mat-label>
+            <input matInput [value]="item.title" placeholder="Ex. It makes me feel..." />
+          </mat-form-field>
+
+
+          <mat-form-field class="width-form-field" fxFlex="30">
+            <mat-label>Texto</mat-label>
+            <input matInput [value]="item.text" placeholder="Ex. It makes me feel..." />
+          </mat-form-field>
+        </form>
+        <mat-divider></mat-divider>
+      </div>
+
+      <div class="buttons-actions">
+        <button mat-button>Add Item</button>
+        <button mat-button>Salvar</button>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
