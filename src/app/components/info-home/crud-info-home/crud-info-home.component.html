@@ -17,13 +17,15 @@
         <mat-label class="title-item">Cartão Principal</mat-label>
         <form fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-around center">
           <mat-form-field class="width-form-field" fxFlex="45">
-            <mat-label>Favorite food</mat-label>
-            <input matInput [value]="mainInfoHome.title" placeholder="Ex. It makes me feel..." />
+            <mat-label>Titulo Principal</mat-label>
+            <input matInput (input)="mainInfoHome.title = $event.target.value" [value]='mainInfoHome.title'
+              placeholder="Ex. It makes me feel..." />
           </mat-form-field>
 
           <mat-form-field class="width-form-field" fxFlex="45">
-            <mat-label>Leave a comment</mat-label>
-            <input matInput [value]="mainInfoHome.text" placeholder="Ex. It makes me feel..." />
+            <mat-label>Texto Principal</mat-label>
+            <input matInput (input)="mainInfoHome.text = $event.target.value" [value]='mainInfoHome.text'
+              placeholder="Ex. It makes me feel..." />
           </mat-form-field>
         </form>
       </div>
@@ -37,26 +39,28 @@
         <form fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-around center">
           <mat-form-field class="width-form-field" fxFlex="30">
             <mat-label>Icone</mat-label>
-            <input matInput [value]="item.icon" placeholder="Ex. It makes me feel..." />
+            <input matInput (input)="item.icon = $event.target.value" [value]="item.icon"
+              placeholder="Ex. It makes me feel..." />
           </mat-form-field>
 
           <mat-form-field class="width-form-field" fxFlex="30">
             <mat-label>Titulo</mat-label>
-            <input matInput [value]="item.title" placeholder="Ex. It makes me feel..." />
+            <input matInput (input)="item.title = $event.target.value" [value]="item.title"
+              placeholder="Ex. It makes me feel..." />
           </mat-form-field>
 
 
           <mat-form-field class="width-form-field" fxFlex="30">
             <mat-label>Texto</mat-label>
-            <input matInput [value]="item.text" placeholder="Ex. It makes me feel..." />
+            <input matInput (input)="item.text = $event.target.value" [value]="item.text"
+              placeholder="Ex. It makes me feel..." />
           </mat-form-field>
         </form>
         <mat-divider></mat-divider>
       </div>
 
       <div class="buttons-actions">
-        <button mat-button>Add Item</button>
-        <button mat-button>Salvar</button>
+        <button mat-button (click)="save()">Salvar</button>
       </div>
     </div>
   </mat-expansion-panel>

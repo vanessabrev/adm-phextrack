@@ -11,8 +11,8 @@ export class CrudInfoHomeComponent implements OnInit {
 
   panelOpenState = false;
 
-  mainInfoHome: InfoHomeModel;
-  itensInfoHome: Array<InfoHomeModel>;
+  mainInfoHome = new InfoHomeModel();
+  itensInfoHome = Array<InfoHomeModel>();
 
   private ID_MAIN_INFO = 1;
 
@@ -24,8 +24,15 @@ export class CrudInfoHomeComponent implements OnInit {
 
   getListMenus(): void {
     this.infoHomeService.infoHome$.subscribe((infoHomes: Array<InfoHomeModel>) => {
-      this.mainInfoHome = infoHomes[0];
+      this.mainInfoHome = infoHomes.filter((info) => info.id === this.ID_MAIN_INFO)[0];
       this.itensInfoHome = infoHomes.filter((info) => info.id !== this.ID_MAIN_INFO);
+    });
+  }
+
+  save(): void {
+    this.infoHomeService.saveInfoHome(this.mainInfoHome);
+    this.itensInfoHome.forEach(item => {
+      this.infoHomeService.saveInfoHome(item);
     });
   }
 

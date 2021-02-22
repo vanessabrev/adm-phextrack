@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 const dev = 'http://127.0.0.1:8000';
-const prod = 'http://api.phextrack.com.br';
+const prod = 'http://api.phextrack.com.br/admin';
 
 export const environment = {
   production: false,
