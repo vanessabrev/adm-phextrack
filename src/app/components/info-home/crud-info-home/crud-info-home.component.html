@@ -1,28 +1,27 @@
-<mat-accordion>
+<mat-spinner *ngIf="!mainInfoHome"></mat-spinner>
+
+<mat-accordion *ngIf="mainInfoHome">
   <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Self aware panel
+        Formulário para Info Home
       </mat-panel-title>
-      <!-- <mat-panel-description>
-        Currently I am {{panelOpenState ? 'open' : 'closed'}}
-      </mat-panel-description> -->
     </mat-expansion-panel-header>
-
 
     <!-- CONTENT -->
     <div class="ajust-titles">
-
       <div class="main-margin">
         <mat-label class="title-item">Cartão Principal</mat-label>
         <form fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-around center">
-          <mat-form-field class="width-form-field" fxFlex="45">
+          <mat-form-field appearance="fill" class="width-form-field" fxFlex="45">
             <mat-label>Titulo Principal</mat-label>
             <input matInput (input)="mainInfoHome.title = $event.target.value" [value]='mainInfoHome.title'
               placeholder="Ex. It makes me feel..." />
           </mat-form-field>
 
-          <mat-form-field class="width-form-field" fxFlex="45">
+          <div fxFlex></div>
+
+          <mat-form-field appearance="fill" class="width-form-field" fxFlex="45">
             <mat-label>Texto Principal</mat-label>
             <input matInput (input)="mainInfoHome.text = $event.target.value" [value]='mainInfoHome.text'
               placeholder="Ex. It makes me feel..." />
@@ -30,33 +29,32 @@
         </form>
       </div>
 
-      <mat-divider></mat-divider>
 
       <!-- Lista dos itens -->
       <div *ngFor="let item of itensInfoHome" class="itens-margin">
 
         <mat-label class="title-item">Cartão Secundário</mat-label>
-        <form fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-around center">
-          <mat-form-field class="width-form-field" fxFlex="30">
+        <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+          <mat-form-field appearance="fill" class="width-form-field" fxFlex>
             <mat-label>Icone</mat-label>
             <input matInput (input)="item.icon = $event.target.value" [value]="item.icon"
               placeholder="Ex. It makes me feel..." />
+            <button mat-button (click)="selectIcon(item.icon)">Selecionar Icone</button>
           </mat-form-field>
 
-          <mat-form-field class="width-form-field" fxFlex="30">
+          <mat-form-field appearance="fill" class="width-form-field" fxFlex>
             <mat-label>Titulo</mat-label>
             <input matInput (input)="item.title = $event.target.value" [value]="item.title"
               placeholder="Ex. It makes me feel..." />
           </mat-form-field>
 
 
-          <mat-form-field class="width-form-field" fxFlex="30">
+          <mat-form-field appearance="fill" class="width-form-field" fxFlex>
             <mat-label>Texto</mat-label>
             <input matInput (input)="item.text = $event.target.value" [value]="item.text"
               placeholder="Ex. It makes me feel..." />
           </mat-form-field>
-        </form>
-        <mat-divider></mat-divider>
+        </div>
       </div>
 
       <div class="buttons-actions">

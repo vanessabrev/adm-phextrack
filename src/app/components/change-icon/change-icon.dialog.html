@@ -1,0 +1,20 @@
+<div>
+  <mat-tab-group (selectedTabChange)="selectTab($event)">
+    <mat-tab *ngFor="let category of categories" [label]="category">
+      <div class="tabs-content" *ngIf="categoryView === category">
+        <div fxLayout="row wrap" fxLayoutAlign="space-around center" fxLayoutGap="10px">
+          <div class="group-icon" *ngFor="let icon of filterListIcons(category); trackBy:trackBy">
+            <mat-icon [mat-dialog-close]="icon.name">{{ icon.name }} </mat-icon>
+            <p>{{ icon.name }} </p>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+  <div>
+    <button mat-button>Selecionar</button>
+    <button mat-button (click)="close()">Fechar</button>
+  </div>
+
+</div>
