@@ -9,6 +9,10 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.mat-drawer-container {
+  background-color: lightgrey;
+}
+
 /* -------------------------------------------------------------------------- */
 /*                               Loading Spinner                              */
 /* -------------------------------------------------------------------------- */
@@ -19,4 +23,12 @@ mat-spinner {
 .mat-progress-spinner circle,
 .mat-spinner circle {
   stroke: lightgrey;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                            All components cards                            */
+/* -------------------------------------------------------------------------- */
+
+.card-component {
+  margin: 1rem;
 }
