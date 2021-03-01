@@ -2,7 +2,7 @@
   margin-top: 2rem;
 }
 
-.group-icon {
+.div-icon {
   .mat-icon {
     width: 5rem;
     font-size: 3rem;
@@ -12,7 +12,15 @@
   p {
     font-size: 10px;
     color: gray;
+    width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   text-align: center;
+}
+
+.div-icon:hover {
+  background-color: lightgrey;
+  border-radius: 5px;
 }

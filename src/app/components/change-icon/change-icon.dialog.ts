@@ -12,7 +12,7 @@ export class ChangeIconDialog {
   listIcons = icons['default'].icons;
   categories = icons['default'].categories;
 
-  categoryView = 'All';
+  categoryView = 'all';
 
   constructor(
     public dialogRef: MatDialogRef<ChangeIconDialog>,
@@ -20,14 +20,10 @@ export class ChangeIconDialog {
   ) { }
 
   filterListIcons(category: string) {
-    let filteredIcons = category === "All"
+    let filteredIcons = category === "all"
       ? this.listIcons
       : this.listIcons.filter(icon => icon.categories.indexOf(category) === 0);
     return filteredIcons;
-  }
-
-  selectTab(event) {
-    this.categoryView = event.tab.textLabel;
   }
 
   trackBy(index, item) {

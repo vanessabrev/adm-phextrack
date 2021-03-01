@@ -34,12 +34,16 @@
       <div *ngFor="let item of itensInfoHome" class="itens-margin">
 
         <mat-label class="title-item">Cartão Secundário</mat-label>
-        <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
-          <mat-form-field appearance="fill" class="width-form-field" fxFlex>
+        <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-around stretch" fxLayoutGap="20px">
+          <mat-form-field appearance="fill" class="width-form-field icones" fxFlex="25">
             <mat-label>Icone</mat-label>
-            <input matInput (input)="item.icon = $event.target.value" [value]="item.icon"
-              placeholder="Ex. It makes me feel..." />
-            <button mat-button (click)="selectIcon(item.icon)">Selecionar Icone</button>
+            <div fxLayout="row" fxLayoutAlign="space-around center">
+              <mat-icon fxFlex="15" [mat-dialog-close]="item.icon">{{ item.icon }} </mat-icon>
+              <input fxFlex matInput (input)="item.icon = $event.target.value" [value]="item.icon"
+                placeholder="Digite ou selecione um icone..." />
+              <button class="button-select-icon" mat-stroked-button fxFlex color="primary"
+                (click)="selectIcon(item)">Selecionar</button>
+            </div>
           </mat-form-field>
 
           <mat-form-field appearance="fill" class="width-form-field" fxFlex>

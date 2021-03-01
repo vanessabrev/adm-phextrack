@@ -2,6 +2,16 @@
   width: 100%;
 }
 
+::ng-deep .mat-form-field-infix {
+  display: flex;
+  justify-content: center;
+}
+
+.button-select-icon {
+  display: flex;
+  justify-content: center;
+}
+
 .ajust-titles {
   text-align: center;
 }
@@ -28,4 +38,8 @@
 
 .title-item {
   margin-top: 1rem;
+}
+
+.mat-accordion .mat-expansion-panel {
+  margin: 1rem 0;
 }

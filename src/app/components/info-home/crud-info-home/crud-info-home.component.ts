@@ -35,12 +35,11 @@ export class CrudInfoHomeComponent implements OnInit {
     });
   }
 
-  selectIcon(currentIcon: string): void {
-    const changeIcon = this.dialog.open(ChangeIconDialog, { width: "100%", height: "90%", data: { icon: currentIcon } });
+  selectIcon(item: InfoHomeModel): void {
+    const changeIcon = this.dialog.open(ChangeIconDialog, { width: "100%", height: "90%", data: { icon: item.icon } });
 
     changeIcon.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
-      return result;
+      item.icon = result;
     });
   }
 

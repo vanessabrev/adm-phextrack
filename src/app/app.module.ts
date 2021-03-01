@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -12,6 +13,7 @@ import { CrudInfoHomeComponent } from './components/info-home/crud-info-home/cru
 import { HomeComponent } from './pages/home/home.component';
 import { InfoHomeComponent } from './pages/info-home/info-home.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { IconNamesPipe } from './pipes/icon-names.pipe';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
     InfoHomeComponent,
     CrudInfoHomeComponent,
     ChangeIconDialog,
+    IconNamesPipe,
   ],
   imports: [
     BrowserModule,
@@ -28,6 +31,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
     HttpClientModule,
     AngularMaterialModule,
     FlexLayoutModule,
+    FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot()
   ],

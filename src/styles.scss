@@ -29,6 +29,8 @@ mat-spinner {
 /*                            All components cards                            */
 /* -------------------------------------------------------------------------- */
 
-.card-component {
-  margin: 1rem;
+.card-component, .nav-width {
+  margin: auto;
+  margin-top: 1rem;
+  max-width: 1280px;
 }

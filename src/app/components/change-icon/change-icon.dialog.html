@@ -1,20 +1,27 @@
 <div>
-  <mat-tab-group (selectedTabChange)="selectTab($event)">
-    <mat-tab *ngFor="let category of categories" [label]="category">
-      <div class="tabs-content" *ngIf="categoryView === category">
-        <div fxLayout="row wrap" fxLayoutAlign="space-around center" fxLayoutGap="10px">
-          <div class="group-icon" *ngFor="let icon of filterListIcons(category); trackBy:trackBy">
-            <mat-icon [mat-dialog-close]="icon.name">{{ icon.name }} </mat-icon>
-            <p>{{ icon.name }} </p>
-          </div>
-        </div>
+  <mat-form-field appearance="fill">
+    <mat-label>Categorias</mat-label>
+    <mat-select [(ngModel)]="categoryView">
+      <mat-option *ngFor="let category of categories" [value]="category">
+        {{category | iconNames}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <p>{{categoryView}}</p>
+
+  <div class="tabs-content" *ngIf="categoryView">
+
+    <div class="group-icon" fxLayout="row wrap" fxLayoutAlign="space-around center" fxLayoutGap="10px">
+      <div class="div-icon" *ngFor="let icon of filterListIcons(categoryView); trackBy:trackBy">
+        <mat-icon [mat-dialog-close]="icon.name">{{ icon.name }} </mat-icon>
+        <p>{{ icon.name }} </p>
       </div>
-    </mat-tab>
-  </mat-tab-group>
+    </div>
+  </div>
 
   <div>
     <button mat-button>Selecionar</button>
     <button mat-button (click)="close()">Fechar</button>
   </div>
-
 </div>
