@@ -12,7 +12,7 @@
 
   <div class="tabs-content" *ngIf="categoryView">
 
-    <div class="group-icon" fxLayout="row wrap" fxLayoutAlign="space-around center" fxLayoutGap="10px">
+    <div class="group-icon" fxLayout="row wrap" fxLayoutGap="10px">
       <div class="div-icon" *ngFor="let icon of filterListIcons(categoryView); trackBy:trackBy">
         <mat-icon [mat-dialog-close]="icon.name">{{ icon.name }} </mat-icon>
         <p>{{ icon.name }} </p>

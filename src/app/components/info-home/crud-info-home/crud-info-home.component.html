@@ -35,13 +35,13 @@
 
         <mat-label class="title-item">Cartão Secundário</mat-label>
         <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-around stretch" fxLayoutGap="20px">
-          <mat-form-field appearance="fill" class="width-form-field icones" fxFlex="25">
+          <mat-form-field fxFlex="25" appearance="fill" class="width-form-field icones">
             <mat-label>Icone</mat-label>
             <div fxLayout="row" fxLayoutAlign="space-around center">
               <mat-icon fxFlex="15" [mat-dialog-close]="item.icon">{{ item.icon }} </mat-icon>
               <input fxFlex matInput (input)="item.icon = $event.target.value" [value]="item.icon"
                 placeholder="Digite ou selecione um icone..." />
-              <button class="button-select-icon" mat-stroked-button fxFlex color="primary"
+              <button fxFlex="30" class="button-select-icon" mat-stroked-button color="primary"
                 (click)="selectIcon(item)">Selecionar</button>
             </div>
           </mat-form-field>
