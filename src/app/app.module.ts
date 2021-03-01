@@ -14,6 +14,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { InfoHomeComponent } from './pages/info-home/info-home.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { IconNamesPipe } from './pipes/icon-names.pipe';
+import { CrudMainInfoComponent } from './components/info-home/crud-main-info/crud-main-info.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { IconNamesPipe } from './pipes/icon-names.pipe';
     CrudInfoHomeComponent,
     ChangeIconDialog,
     IconNamesPipe,
+    CrudMainInfoComponent,
   ],
   imports: [
     BrowserModule,

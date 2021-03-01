@@ -1,6 +1,6 @@
-<mat-spinner *ngIf="!mainInfoHome"></mat-spinner>
+<mat-spinner *ngIf="!mainItemInfoHome"></mat-spinner>
 
-<mat-accordion *ngIf="mainInfoHome">
+<mat-accordion *ngIf="mainItemInfoHome">
   <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
     <mat-expansion-panel-header>
       <mat-panel-title>
@@ -15,7 +15,7 @@
         <form fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-around center">
           <mat-form-field appearance="fill" class="width-form-field" fxFlex="45">
             <mat-label>Titulo Principal</mat-label>
-            <input matInput (input)="mainInfoHome.title = $event.target.value" [value]='mainInfoHome.title'
+            <input matInput (input)="mainItemInfoHome.title = $event.target.value" [value]='mainItemInfoHome.title'
               placeholder="Ex. It makes me feel..." />
           </mat-form-field>
 
@@ -23,7 +23,7 @@
 
           <mat-form-field appearance="fill" class="width-form-field" fxFlex="45">
             <mat-label>Texto Principal</mat-label>
-            <input matInput (input)="mainInfoHome.text = $event.target.value" [value]='mainInfoHome.text'
+            <input matInput (input)="mainItemInfoHome.text = $event.target.value" [value]='mainItemInfoHome.text'
               placeholder="Ex. It makes me feel..." />
           </mat-form-field>
         </form>

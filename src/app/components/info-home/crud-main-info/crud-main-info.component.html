@@ -1,0 +1,36 @@
+<mat-spinner *ngIf="!mainInfoHome"></mat-spinner>
+
+<mat-accordion *ngIf="mainInfoHome">
+  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Formulário para Main Home
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <!-- CONTENT -->
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-around center">
+      <mat-form-field appearance="fill" class="width-form-field" fxFlex="45">
+        <mat-label>Titulo Principal</mat-label>
+        <input matInput (input)="mainInfoHome.title = $event.target.value" [value]='mainInfoHome.title'
+          placeholder="Ex. It makes me feel..." />
+      </mat-form-field>
+
+      <div fxFlex></div>
+
+      <mat-form-field appearance="fill" class="width-form-field" fxFlex="45">
+        <mat-label>Subtitle</mat-label>
+        <input matInput (input)="mainInfoHome.subtitle = $event.target.value" [value]='mainInfoHome.subtitle'
+          placeholder="Ex. It makes me feel..." />
+      </mat-form-field>
+    </div>
+
+    <div class="image-container">
+      <img [src]="mainInfoHome.image" alt="Background Site">
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <mat-label>Imagem de fundo da Home</mat-label>
+        <button mat-stroked-button color="primary" (click)="csvInputChange($event)">Selecionar</button>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
