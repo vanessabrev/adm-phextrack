@@ -27,9 +27,17 @@
 
     <div class="image-container">
       <img [src]="mainInfoHome.image" alt="Background Site">
+
       <div fxLayout="row" fxLayoutAlign="space-between center">
-        <mat-label>Imagem de fundo da Home</mat-label>
-        <button mat-stroked-button color="primary" (click)="csvInputChange($event)">Selecionar</button>
+        <mat-label fxFlex="40">Imagem de fundo da Home</mat-label>
+
+        <div fxFlex class="group-select-image" fxLayout="row" fxLayoutAlign="end center">
+          <mat-label class="name-image">{{ this.fileToUpload ? this.fileToUpload.name : 'Nenhuma selecionada..' }} </mat-label>
+          <input #imageUpload hidden="true" type="file" onclick="this.value=null" (change)="fileChangeEvent($event)" name="Image" accept="image/*" />
+          <button mat-stroked-button color="primary" (click)="imageUpload.click()">
+            <mat-icon>file_upload</mat-icon> Selecionar
+          </button>
+        </div>
       </div>
     </div>
   </mat-expansion-panel>

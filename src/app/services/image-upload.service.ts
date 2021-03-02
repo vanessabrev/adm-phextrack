@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { UploadImageModel } from '../models/upload-image';
 
 @Injectable({
   providedIn: 'root'
@@ -10,30 +10,18 @@ export class ImageUploadService {
 
   readonly api = environment.apiUrl;
 
-  private imageUploadSubject = new Subject<any>();
-  imageUpload$ = this.imageUploadSubject.asObservable();
-
   constructor(private httpClient: HttpClient) { }
 
-  // public uploadImage(image: File): void {
-  //   const formData = new FormData();
-
-  //   formData.append('image', image);
-
-  //   //  this.httpClient.post<any>(`${this.api}/images-teste`, formData)
-  //   //   .toPromise().then((post) => {
-  //   //     this.imageUploadSubject.next(post);
-  //   //   });
-  //   console.log('formData', formData)
-  //   this.httpClient.post(`/`, formData);
-  // }
-
-  // TODO: FINALIZAR SERVIÇO (esse serviço será utilizado no painel administrativo)
-  public uploadImage(image: File): any {
+  public uploadImage(dataUpload: UploadImageModel): any {
     const formData = new FormData();
 
-    formData.append('image', image);
+    formData.append('image', dataUpload.image);
+    formData.append('local', dataUpload.local);
+    formData.append('name', dataUpload.name);
 
-    return this.httpClient.post(`http://localhost:4200/teste`, formData) .toPromise().then((post) => console.log(post));
-  }
+    const headers = new HttpHeaders({ 'enctype': 'multipart/form-data' });
+
+    return this.httpClient.post(`${this.api}/upload-images`, formData, { headers: headers })
+      .toPromise().then((post) => console.log(post));
+  };
 }
