@@ -11,6 +11,9 @@ import { AppComponent } from './app.component';
 import { ChangeIconDialog } from './components/change-icon/change-icon.dialog';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
+import { CrudAdressesComponent } from './pages/contacts/crud-andresses/crud-adresses.component';
+import { CrudEmailsComponent } from './pages/contacts/crud-emails/crud-emails.component';
+import { CrudPhonesComponent } from './pages/contacts/crud-phones/crud-phones.component';
 import { HomeComponent } from './pages/home/home.component';
 import { CrudInfoHomeComponent } from './pages/info-home/crud-info-home/crud-info-home.component';
 import { CrudMainInfoComponent } from './pages/info-home/crud-main-info/crud-main-info.component';
@@ -20,9 +23,6 @@ import { ProductsComponent } from './pages/products/products.component';
 import { SocialMediasComponent } from './pages/social-medias/social-medias.component';
 import { UsersComponent } from './pages/users/users.component';
 import { IconNamesPipe } from './pipes/icon-names.pipe';
-import { CrudPhonesComponent } from './pages/contacts/crud-phones/crud-phones.component';
-import { CrudEmailsComponent } from './pages/contacts/crud-emails/crud-emails.component';
-import { CrudAndressesComponent } from './pages/contacts/crud-andresses/crud-andresses.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,7 @@ import { CrudAndressesComponent } from './pages/contacts/crud-andresses/crud-and
     UsersComponent,
     CrudPhonesComponent,
     CrudEmailsComponent,
-    CrudAndressesComponent,
+    CrudAdressesComponent,
   ],
   imports: [
     BrowserModule,
