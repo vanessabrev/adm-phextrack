@@ -19,6 +19,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { ProductsComponent } from './pages/products/products.component';
 import { SocialMediasComponent } from './pages/social-medias/social-medias.component';
 import { IconNamesPipe } from './pipes/icon-names.pipe';
+import { UsersComponent } from './pages/users/users.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { IconNamesPipe } from './pipes/icon-names.pipe';
     SocialMediasComponent,
     ProductsComponent,
     ContactsComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,
