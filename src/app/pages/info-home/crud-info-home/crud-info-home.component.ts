@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { InfoHomeModel } from 'src/app/models/info-home/info-home.model';
 import { InfoHomeService } from 'src/app/services/api/info-home.service';
-import { ChangeIconDialog } from '../../change-icon/change-icon.dialog';
+import { ChangeIconDialog } from '../../../components/change-icon/change-icon.dialog';
 
 
 @Component({

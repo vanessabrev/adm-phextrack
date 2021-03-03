@@ -9,17 +9,17 @@ import { AngularMaterialModule } from './angular-material-module/angular-materia
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChangeIconDialog } from './components/change-icon/change-icon.dialog';
-import { CrudInfoHomeComponent } from './components/info-home/crud-info-home/crud-info-home.component';
-import { CrudMainInfoComponent } from './components/info-home/crud-main-info/crud-main-info.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
 import { HomeComponent } from './pages/home/home.component';
+import { CrudInfoHomeComponent } from './pages/info-home/crud-info-home/crud-info-home.component';
+import { CrudMainInfoComponent } from './pages/info-home/crud-main-info/crud-main-info.component';
 import { InfoHomeComponent } from './pages/info-home/info-home.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { SocialMediasComponent } from './pages/social-medias/social-medias.component';
-import { IconNamesPipe } from './pipes/icon-names.pipe';
 import { UsersComponent } from './pages/users/users.component';
+import { IconNamesPipe } from './pipes/icon-names.pipe';
 
 @NgModule({
   declarations: [
