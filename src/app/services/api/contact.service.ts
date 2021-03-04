@@ -4,8 +4,10 @@ import { Subject } from 'rxjs';
 import { AddressModel } from 'src/app/models/contacts/address.model';
 import { EmailModel } from 'src/app/models/contacts/email.model';
 import { PhoneModel } from 'src/app/models/contacts/phone.model';
+import { NotificationTypeEnum } from 'src/app/models/notification.model';
 import { environment } from 'src/environments/environment';
 import { ErroLogService } from '../erro-log.service';
+import { NotificationService } from '../notification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +15,6 @@ import { ErroLogService } from '../erro-log.service';
 export class ContactService {
 
   readonly api = environment.apiUrl;
-
-  // private contactsSubject = new Subject<ContactModel>();
-  // contact$ = this.contactsSubject.asObservable();
 
   private adressesSubject = new Subject<Array<AddressModel>>();
   adresse$ = this.adressesSubject.asObservable();
@@ -28,7 +27,8 @@ export class ContactService {
 
   constructor(
     private httpClient: HttpClient,
-    private errorLog: ErroLogService
+    private errorLog: ErroLogService,
+    private notificationService: NotificationService
   ) { }
 
 
@@ -43,6 +43,26 @@ export class ContactService {
       }, err => this.errorLog.showError(err, 'ContactService'));
   }
 
+  savePhone(phone: PhoneModel): void {
+    this.httpClient.post<PhoneModel>(`${this.api}/contact-phone`, phone)
+      .toPromise().then((info: any) => {
+        this.showNotification(info.message)
+      }, err => this.errorLog.showError(err, 'ContactService'));
+  }
+
+  updatePhone(phone: PhoneModel): void {
+    this.httpClient.put<PhoneModel>(`${this.api}/contact-phone/` + phone.id, phone)
+      .toPromise().then((info: any) => {
+        this.showNotification(info.message)
+      }, err => this.errorLog.showError(err, 'ContactService'));
+  }
+
+  deletePhone(phone: PhoneModel): void {
+    this.httpClient.delete<PhoneModel>(`${this.api}/contact-phone/` + phone.id)
+      .toPromise().then((info: any) => {
+        this.showNotification(info.message)
+      }, err => this.errorLog.showError(err, 'ContactService'));
+  }
 
   /* -------------------------------------------------------------------------- */
   /*                                 CRUD EMAILS                                */
@@ -55,6 +75,26 @@ export class ContactService {
       }, err => this.errorLog.showError(err, 'ContactService'));
   }
 
+  saveEmail(email: EmailModel): void {
+    this.httpClient.post<EmailModel>(`${this.api}/contact-email`, email)
+      .toPromise().then((info: any) => {
+        this.showNotification(info.message)
+      }, err => this.errorLog.showError(err, 'ContactService'));
+  }
+
+  updateEmail(email: EmailModel): void {
+    this.httpClient.put<EmailModel>(`${this.api}/contact-email/` + email.id, email)
+      .toPromise().then((info: any) => {
+        this.showNotification(info.message)
+      }, err => this.errorLog.showError(err, 'ContactService'));
+  }
+
+  deleteEmail(email: EmailModel): void {
+    this.httpClient.delete<EmailModel>(`${this.api}/contact-email/` + email.id)
+      .toPromise().then((info: any) => {
+        this.showNotification(info.message)
+      }, err => this.errorLog.showError(err, 'ContactService'));
+  }
 
   /* -------------------------------------------------------------------------- */
   /*                                 CRUD ADRESSES                              */
@@ -65,5 +105,35 @@ export class ContactService {
       .toPromise().then((adresses: Array<AddressModel>) => {
         this.adressesSubject.next(adresses);
       }, err => this.errorLog.showError(err, 'ContactService'));
+  }
+
+  saveAddress(address: AddressModel): void {
+    this.httpClient.post<AddressModel>(`${this.api}/contact-address`, address)
+      .toPromise().then((info: any) => {
+        this.showNotification(info.message)
+      }, err => this.errorLog.showError(err, 'ContactService'));
+  }
+
+  updateAddress(address: AddressModel): void {
+    this.httpClient.put<AddressModel>(`${this.api}/contact-address/` + address.id, address)
+      .toPromise().then((info: any) => {
+        this.showNotification(info.message)
+      }, err => this.errorLog.showError(err, 'ContactService'));
+  }
+
+  deleteAddress(address: AddressModel): void {
+    this.httpClient.delete<AddressModel>(`${this.api}/contact-address/` + address.id)
+      .toPromise().then((info: any) => {
+        this.showNotification(info.message)
+      }, err => this.errorLog.showError(err, 'ContactService'));
+  }
+
+  /* -------------------------------------------------------------------------- */
+  /*                                   GENERAL                                  */
+  /* -------------------------------------------------------------------------- */
+
+  showNotification(message: string): void {
+    let type = NotificationTypeEnum.info;
+    this.notificationService.showMessage({ message, type });
   }
 }

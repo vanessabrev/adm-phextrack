@@ -1,1 +1,32 @@
-<p>crud-phones works!</p>
+<mat-spinner *ngIf="!listPhones"></mat-spinner>
+
+<mat-accordion *ngIf="listPhones">
+  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Formulário para Telefones
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <!-- CONTENT -->
+    <div class="alert-msg" *ngIf="listPhones && !listPhones.length" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+      <mat-icon> warning_amber</mat-icon>
+      <mat-label> Adicione um numero para salvar </mat-label>
+    </div>
+
+    <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutGap="23px">
+      <mat-form-field fxFlex fxFlex.gt-xs="23" *ngFor="let phone of listPhones; let index = index" appearance="fill">
+        <mat-label>Telefone {{ index + 1 }}</mat-label>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <input matInput [(ngModel)]="phone.phone" type="tel" name="phone" placeholder="Digite um telefone" />
+          <mat-icon class="cursor-pointer" (click)="removePhone(phone, index)">delete_forever</mat-icon>
+        </div>
+      </mat-form-field>
+    </div>
+
+    <div class="buttons-form-right">
+      <button mat-button (click)="addPhones()">Adicionar</button>
+      <button mat-button *ngIf="listPhones && listPhones.length" (click)="savePhones()">Salvar</button>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

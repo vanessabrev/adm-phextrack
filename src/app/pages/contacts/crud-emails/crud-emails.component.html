@@ -1,1 +1,32 @@
-<p>crud-emails works!</p>
+<mat-spinner *ngIf="!listEmails"></mat-spinner>
+
+<mat-accordion *ngIf="listEmails">
+  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Formulário para Emails
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <!-- CONTENT -->
+    <div class="alert-msg" *ngIf="listEmails && !listEmails.length" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+      <mat-icon> warning_amber</mat-icon>
+      <mat-label> Adicione um Email para salvar </mat-label>
+    </div>
+
+    <div fxLayout="column" fxLayout.gt-sm="row wrap" fxLayoutGap="23px">
+      <mat-form-field fxFlex fxFlex.gt-xs="31" *ngFor="let email of listEmails; let index = index" appearance="fill">
+        <mat-label>Email {{ index + 1 }}</mat-label>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <input matInput [(ngModel)]="email.email" type="text" name="email" placeholder="Digite um email" />
+          <mat-icon class="cursor-pointer" (click)="removeEmail(email, index)">delete_forever</mat-icon>
+        </div>
+      </mat-form-field>
+    </div>
+
+    <div class="buttons-form-right">
+      <button mat-button (click)="addEmail()">Adicionar</button>
+      <button mat-button *ngIf="listEmails && listEmails.length" (click)="saveEmail()">Salvar</button>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

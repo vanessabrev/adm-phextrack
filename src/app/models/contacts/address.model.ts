@@ -1,4 +1,5 @@
 export class AddressModel {
+  id?: number;
   street: string; //rua
   number: string;
   complement: string;

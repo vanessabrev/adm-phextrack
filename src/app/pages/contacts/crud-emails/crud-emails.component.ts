@@ -9,6 +9,8 @@ import { ContactService } from 'src/app/services/api/contact.service';
 })
 export class CrudEmailsComponent implements OnInit {
 
+  panelOpenState = false;
+
   listEmails: Array<EmailModel>;
 
   constructor(private contactService: ContactService) { }
@@ -16,9 +18,31 @@ export class CrudEmailsComponent implements OnInit {
   ngOnInit(): void {
     this.contactService.email$.subscribe((emails) => {
       this.listEmails = emails;
-      console.log('this.listEmails', this.listEmails)
     })
 
     this.contactService.getEmails(); // start
+  }
+
+  saveEmail(): void {
+    this.listEmails.forEach(email => {
+      if (email.id && email.email) {
+        this.contactService.updateEmail(email)
+      } else if (email.email) {
+        this.contactService.saveEmail(email)
+      };
+    });
+  }
+
+  addEmail(): void {
+    let newEmail = new EmailModel();
+    newEmail.email = "";
+    this.listEmails.push(newEmail);
+  }
+
+  removeEmail(email: EmailModel, index: number): void {
+    if (email.id) {
+      this.contactService.deleteEmail(email)
+    }
+    this.listEmails.splice(index, 1);
   }
 }

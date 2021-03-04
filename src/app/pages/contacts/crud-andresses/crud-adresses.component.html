@@ -1,1 +1,80 @@
-<p>crud-adresses works!</p>
+<mat-spinner *ngIf="!listAdresses"></mat-spinner>
+
+<mat-accordion *ngIf="listAdresses">
+  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Formulário para Endereços
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <!-- CONTENT -->
+    <div class="alert-msg" *ngIf="listAdresses && !listAdresses.length" fxLayout="row" fxLayoutAlign="start center"
+      fxLayoutGap="10px">
+      <mat-icon> warning_amber</mat-icon>
+      <mat-label> Adicione um endereço para salvar </mat-label>
+    </div>
+
+    <div *ngFor="let address of listAdresses; let index = index">
+      <mat-divider></mat-divider>
+
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <mat-label class="address-title font-italic"> Endereço {{ index + 1 }} </mat-label>
+        <button class="button-remove" mat-button (click)="removeAddress(address, index)">
+          <mat-label> Remover </mat-label>
+          <mat-icon class="cursor-pointer"> delete_forever</mat-icon>
+        </button>
+      </div>
+
+      <div fxLayout="column" fxLayout.gt-xs="row wrap">
+        <mat-form-field fxFlex="40" appearance="fill">
+          <mat-label>Rua</mat-label>
+          <input matInput [(ngModel)]="address.street" type="text" name="street" placeholder="Digite o nome da rua" />
+        </mat-form-field>
+
+        <div fxFlex></div>
+
+        <mat-form-field fxFlex="40" appearance="fill">
+          <mat-label>Complemento</mat-label>
+          <input matInput [(ngModel)]="address.complement" type="text" name="complement"
+            placeholder="Digite um complemento" />
+        </mat-form-field>
+
+        <div fxFlex></div>
+
+        <mat-form-field fxFlex="15" appearance="fill">
+          <mat-label>Número</mat-label>
+          <input matInput [(ngModel)]="address.number" type="text" name="number"
+            placeholder="Digite o número" />
+        </mat-form-field>
+
+        <mat-form-field fxFlex="40" appearance="fill">
+          <mat-label>Munícipio</mat-label>
+          <input matInput [(ngModel)]="address.municipality" type="text" name="municipality"
+            placeholder="Digite o munícipio" />
+        </mat-form-field>
+
+        <div fxFlex></div>
+
+        <mat-form-field fxFlex="40" appearance="fill">
+          <mat-label>CEP</mat-label>
+          <input matInput [(ngModel)]="address.postalCode" type="text" name="address" placeholder="Digite o CEP" />
+        </mat-form-field>
+
+        <div fxFlex></div>
+
+        <mat-form-field fxFlex="15" appearance="fill">
+          <mat-label>UF</mat-label>
+          <mat-select [(ngModel)]="address.uf">
+            <mat-option *ngFor="let uf of listUfs" [value]="uf.sigla"> {{ uf.sigla }} </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="buttons-form-right">
+      <button mat-button (click)="addAddress()">Adicionar</button>
+      <button mat-button *ngIf="listAdresses && listAdresses.length" (click)="saveAddress()">Salvar</button>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

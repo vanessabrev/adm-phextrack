@@ -9,8 +9,28 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.font-italic {
+  font-style: italic;
+}
+
 .mat-drawer-container {
   background-color: lightgrey;
+}
+
+button {
+  min-width: 100px !important;
+}
+
+.buttons-form-right {
+  float: right;
+}
+
+.alert-msg {
+  color: rgb(158, 158, 64);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -29,8 +49,10 @@ mat-spinner {
 /*                            All components cards                            */
 /* -------------------------------------------------------------------------- */
 
-.card-component, .nav-width {
+.card-component,
+.nav-width {
   margin: auto;
   margin-top: 1rem;
   max-width: 1280px;
+  padding: 2rem !important;
 }
