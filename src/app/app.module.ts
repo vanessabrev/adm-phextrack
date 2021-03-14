@@ -24,6 +24,7 @@ import { SocialMediasComponent } from './pages/social-medias/social-medias.compo
 import { UsersComponent } from './pages/users/users.component';
 import { IconNamesPipe } from './pipes/icon-names.pipe';
 import { CrudSocialMediaComponent } from './pages/social-medias/crud-social-media/crud-social-media.component';
+import { UsersListComponent } from './pages/users/users-list/users-list.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { CrudSocialMediaComponent } from './pages/social-medias/crud-social-medi
     CrudEmailsComponent,
     CrudAdressesComponent,
     CrudSocialMediaComponent,
+    UsersListComponent,
   ],
   imports: [
     BrowserModule,
