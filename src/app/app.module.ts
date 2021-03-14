@@ -23,6 +23,7 @@ import { ProductsComponent } from './pages/products/products.component';
 import { SocialMediasComponent } from './pages/social-medias/social-medias.component';
 import { UsersComponent } from './pages/users/users.component';
 import { IconNamesPipe } from './pipes/icon-names.pipe';
+import { CrudSocialMediaComponent } from './pages/social-medias/crud-social-media/crud-social-media.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { IconNamesPipe } from './pipes/icon-names.pipe';
     CrudPhonesComponent,
     CrudEmailsComponent,
     CrudAdressesComponent,
+    CrudSocialMediaComponent,
   ],
   imports: [
     BrowserModule,

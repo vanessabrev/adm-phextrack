@@ -1,0 +1,61 @@
+<mat-spinner *ngIf="!socialMedias"></mat-spinner>
+
+
+<mat-card class="card-component" *ngIf="socialMedias">
+  <h4>Formulário para Mídias Sociais</h4>
+
+  <mat-card-content>
+    <div fxLayout="column" fxFlex>
+      <div fxLayout="column">
+          <mat-form-field appearance="fill" fxFlex>
+            <mat-label>Facebook</mat-label>
+            <div fxLayout="row">
+              <input matInput (input)="socialMedias.facebook = $event.target.value" [value]="socialMedias.facebook"
+                placeholder="Digite um link para essa mídia social" />
+              <mat-icon class="cursor-pointer" (click)="removeSocialMedias('facebook')">delete_forever</mat-icon>
+            </div>
+          </mat-form-field>
+
+        <mat-form-field appearance="fill" fxFlex>
+          <mat-label>Instagram</mat-label>
+          <div fxLayout="row">
+            <input matInput (input)="socialMedias.instagram = $event.target.value" [value]="socialMedias.instagram"
+              placeholder="Digite um link para essa mídia social" />
+            <mat-icon class="cursor-pointer" (click)="removeSocialMedias('instagram')">delete_forever</mat-icon>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" fxFlex>
+          <mat-label>Linkedin</mat-label>
+          <div fxLayout="row">
+            <input matInput (input)="socialMedias.linkedin = $event.target.value" [value]="socialMedias.linkedin"
+              placeholder="Digite um link para essa mídia social" />
+            <mat-icon class="cursor-pointer" (click)="removeSocialMedias('linkedin')">delete_forever</mat-icon>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" fxFlex>
+          <mat-label>Skype</mat-label>
+          <div fxLayout="row">
+            <input matInput (input)="socialMedias.skype = $event.target.value" [value]="socialMedias.skype"
+              placeholder="Digite um link para essa mídia social" />
+            <mat-icon class="cursor-pointer" (click)="removeSocialMedias('skype')">delete_forever</mat-icon>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" fxFlex>
+          <mat-label>Twitter</mat-label>
+          <div fxLayout="row">
+            <input matInput (input)="socialMedias.twitter = $event.target.value" [value]="socialMedias.twitter"
+              placeholder="Digite um link para essa mídia social" />
+            <mat-icon class="cursor-pointer" (click)="removeSocialMedias('twitter')">delete_forever</mat-icon>
+          </div>
+        </mat-form-field>
+      </div>
+
+      <div class="buttons-form-right">
+        <button mat-button (click)="saveSocialMedias()">Salvar</button>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
