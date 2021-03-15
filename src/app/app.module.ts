@@ -25,6 +25,9 @@ import { UsersComponent } from './pages/users/users.component';
 import { IconNamesPipe } from './pipes/icon-names.pipe';
 import { CrudSocialMediaComponent } from './pages/social-medias/crud-social-media/crud-social-media.component';
 import { UsersListComponent } from './pages/users/users-list/users-list.component';
+import { CrudAboutUsComponent } from './pages/about-us/crud-about-us/crud-about-us.component';
+import { CrudAboutItemComponent } from './pages/about-us/crud-about-item/crud-about-item.component';
+import { CrudAboutGalleryComponent } from './pages/about-us/crud-about-gallery/crud-about-gallery.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +49,9 @@ import { UsersListComponent } from './pages/users/users-list/users-list.componen
     CrudAdressesComponent,
     CrudSocialMediaComponent,
     UsersListComponent,
+    CrudAboutUsComponent,
+    CrudAboutItemComponent,
+    CrudAboutGalleryComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,34 @@
+<mat-spinner *ngIf="!aboutMain"></mat-spinner>
+
+<mat-accordion *ngIf="aboutMain">
+  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Formulário para informações principais
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <!-- CONTENT -->
+    <div fxLayout="column">
+      <mat-form-field appearance="fill" fxFlex>
+        <mat-label>Título</mat-label>
+        <div fxLayout="row">
+          <input matInput (input)="aboutMain.title = $event.target.value" [value]="aboutMain.title"
+            placeholder="Digite um título" />
+        </div>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" fxFlex>
+        <mat-label>Texto</mat-label>
+        <div fxLayout="row">
+          <input matInput (input)="aboutMain.text = $event.target.value" [value]="aboutMain.text"
+            placeholder="Digite um texto" />
+        </div>
+      </mat-form-field>
+    </div>
+
+    <div class="buttons-form-right">
+      <button mat-button (click)="saveAboutMain()">Salvar</button>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

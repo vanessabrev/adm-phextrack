@@ -1,0 +1,44 @@
+<mat-spinner *ngIf="!aboutItens"></mat-spinner>
+
+<mat-accordion *ngIf="aboutItens">
+  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Formulário para Itens
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div *ngFor="let item of aboutItens" class="itens-margin">
+      <mat-label class="title-item">Cartão Secundário</mat-label>
+      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-around stretch" fxLayoutGap="20px">
+        <mat-form-field fxFlex="25" appearance="fill" class="width-form-field icones">
+          <mat-label>Icone</mat-label>
+          <div fxLayout="row" fxLayoutAlign="space-around center">
+            <mat-icon fxFlex="15" [mat-dialog-close]="item.icon">{{ item.icon }} </mat-icon>
+            <input fxFlex matInput (input)="item.icon = $event.target.value" [value]="item.icon"
+              placeholder="Digite ou selecione um icone..." />
+            <button fxFlex="30" class="button-select-icon" mat-stroked-button color="primary"
+              (click)="selectIcon(item)">Selecionar</button>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="width-form-field" fxFlex>
+          <mat-label>Titulo</mat-label>
+          <input matInput (input)="item.title = $event.target.value" [value]="item.title"
+            placeholder="Ex. It makes me feel..." />
+        </mat-form-field>
+
+
+        <mat-form-field appearance="fill" class="width-form-field" fxFlex>
+          <mat-label>Texto</mat-label>
+          <input matInput (input)="item.text = $event.target.value" [value]="item.text"
+            placeholder="Ex. It makes me feel..." />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="buttons-form-right">
+      <button mat-button (click)="saveAboutMain()">Salvar</button>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
