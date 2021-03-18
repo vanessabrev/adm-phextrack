@@ -25,7 +25,7 @@ button {
   min-width: 100px !important;
 }
 
-.button-remove{
+.button-remove {
   color: red;
 }
 
@@ -62,4 +62,31 @@ mat-spinner {
   margin-top: 1rem;
   max-width: 1280px;
   padding: 2rem !important;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                 IMAGE STYLE                                */
+/* -------------------------------------------------------------------------- */
+
+.image-container {
+  width: 400px;
+  min-width: 400px;
+  margin: auto;
+
+  .style-container {
+    border: 5px dotted lightgrey;
+    height: 300px;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+.group-select-image {
+  .name-image {
+    padding-right: 5px;
+    font-size: 10px;
+    color: grey;
+  }
 }

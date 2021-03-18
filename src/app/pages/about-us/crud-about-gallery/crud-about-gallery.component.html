@@ -1,1 +1,38 @@
-<p>crud-about-gallery works!</p>
+<mat-spinner *ngIf="!aboutGallery"></mat-spinner>
+
+<mat-accordion *ngIf="aboutGallery">
+  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Formulário para salvar imagens na galeria
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+
+    <div  fxLayout="column" fxLayout.gt-sm="row wrap"  fxLayoutGap="10px" fxLayoutAlign="space-between center">
+      <div fxFlex="30" class="image-container" *ngFor="let item of aboutGallery; let index = index">
+        <div class="style-container">
+          <img [src]="item.image" [alt]="item.name">
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <mat-label fxFlex="40">Imagem {{index + 1}}</mat-label>
+
+          <!-- <div fxFlex class="group-select-image" fxLayout="row" fxLayoutAlign="end center">
+          <mat-label class="name-image">{{ this.fileToUpload ? this.fileToUpload.name : 'Nenhuma selecionada..' }}
+          </mat-label>
+          <input #imageUpload hidden="true" type="file" onclick="this.value=null" (change)="fileChangeEvent($event)"
+            name="Image" accept="image/*" />
+          <button mat-stroked-button color="primary" (click)="imageUpload.click()">
+            <mat-icon>file_upload</mat-icon> Selecionar
+          </button>
+        </div> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="buttons-form-right">
+      <button mat-button (click)="saveAboutMain()">Salvar</button>
+      <button mat-button (click)="addItem()">Adicionar Item</button>
+    </div> -->
+  </mat-expansion-panel>
+</mat-accordion>
