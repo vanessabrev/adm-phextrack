@@ -8,8 +8,18 @@
       </mat-panel-title>
     </mat-expansion-panel-header>
 
-    <div *ngFor="let item of aboutItens" class="itens-margin">
-      <mat-label class="title-item">Cartão Secundário</mat-label>
+    <div *ngFor="let item of aboutItens; let index = index">
+      <mat-divider></mat-divider>
+
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <mat-label class="title-item">Item {{ (index+1) }}</mat-label>
+
+        <button class="button-remove buttons-form-right" mat-button (click)="removeItem(item, index)">
+          <mat-label> Remover </mat-label>
+          <mat-icon class="cursor-pointer"> delete_forever</mat-icon>
+        </button>
+      </div>
+
       <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-around stretch" fxLayoutGap="20px">
         <mat-form-field fxFlex="25" appearance="fill" class="width-form-field icones">
           <mat-label>Icone</mat-label>
@@ -25,20 +35,20 @@
         <mat-form-field appearance="fill" class="width-form-field" fxFlex>
           <mat-label>Titulo</mat-label>
           <input matInput (input)="item.title = $event.target.value" [value]="item.title"
-            placeholder="Ex. It makes me feel..." />
+            placeholder="Digite um título" />
         </mat-form-field>
 
 
         <mat-form-field appearance="fill" class="width-form-field" fxFlex>
           <mat-label>Texto</mat-label>
-          <input matInput (input)="item.text = $event.target.value" [value]="item.text"
-            placeholder="Ex. It makes me feel..." />
+          <input matInput (input)="item.text = $event.target.value" [value]="item.text" placeholder="Digite um texto" />
         </mat-form-field>
       </div>
     </div>
 
     <div class="buttons-form-right">
       <button mat-button (click)="saveAboutMain()">Salvar</button>
+      <button mat-button (click)="addItem()">Adicionar Item</button>
     </div>
   </mat-expansion-panel>
 </mat-accordion>

@@ -15,6 +15,8 @@ export class CrudAboutItemComponent implements OnInit {
 
   aboutItens: Array<AboutItensInfoModel>;
 
+  readonly QTD_MAX_ITENS = 5;
+
   constructor(
     private aboutUsService: AboutUsService,
     public dialog: MatDialog
@@ -29,6 +31,25 @@ export class CrudAboutItemComponent implements OnInit {
     this.aboutUsService.aboutItensInfo$.subscribe((aboutItens: Array<AboutItensInfoModel>) => {
       this.aboutItens = aboutItens;
     });
+  }
+
+  addItem(): void {
+    if (this.aboutItens.length < this.QTD_MAX_ITENS) {
+      let newItem = new AboutItensInfoModel();
+      newItem.icon = newItem.title = newItem.text = "";
+      this.aboutItens.push(newItem);
+      return;
+    }
+
+    this.aboutUsService.showNotification('Limite de itens atingido: ' + this.QTD_MAX_ITENS);
+  }
+
+  removeItem(item: AboutItensInfoModel, index: number): void {
+    console.log('item', index, item)
+    if (item.id) {
+      this.aboutUsService.deleteAboutItensInfo(item)
+    }
+    this.aboutItens.splice(index, 1);
   }
 
   saveAboutMain(): void {
@@ -52,5 +73,4 @@ export class CrudAboutItemComponent implements OnInit {
       item.icon = result;
     });
   }
-
 }
