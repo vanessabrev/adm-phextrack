@@ -80,6 +80,7 @@ mat-spinner {
 
   img {
     width: 100%;
+    max-height: 300px;
   }
 }
 
@@ -89,4 +90,8 @@ mat-spinner {
     font-size: 10px;
     color: grey;
   }
+}
+
+.mat-accordion .mat-expansion-panel {
+  margin: 1rem 0;
 }

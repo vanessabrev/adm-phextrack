@@ -9,30 +9,36 @@
     </mat-expansion-panel-header>
 
 
-    <div  fxLayout="column" fxLayout.gt-sm="row wrap"  fxLayoutGap="10px" fxLayoutAlign="space-between center">
+    <div fxLayout="column" fxLayout.gt-sm="row wrap" fxLayoutGap="10px" fxLayoutAlign="space-between center">
       <div fxFlex="30" class="image-container" *ngFor="let item of aboutGallery; let index = index">
+
+        <button class="button-remove buttons-form-right" mat-button (click)="removeItem(item, index)">
+          <mat-label> Remover </mat-label>
+          <mat-icon class="cursor-pointer"> delete_forever</mat-icon>
+        </button>
+
         <div class="style-container">
           <img [src]="item.image" [alt]="item.name">
         </div>
         <div fxLayout="row" fxLayoutAlign="space-between center">
           <mat-label fxFlex="40">Imagem {{index + 1}}</mat-label>
 
-          <!-- <div fxFlex class="group-select-image" fxLayout="row" fxLayoutAlign="end center">
-          <mat-label class="name-image">{{ this.fileToUpload ? this.fileToUpload.name : 'Nenhuma selecionada..' }}
-          </mat-label>
-          <input #imageUpload hidden="true" type="file" onclick="this.value=null" (change)="fileChangeEvent($event)"
-            name="Image" accept="image/*" />
-          <button mat-stroked-button color="primary" (click)="imageUpload.click()">
-            <mat-icon>file_upload</mat-icon> Selecionar
-          </button>
-        </div> -->
+          <div fxFlex class="group-select-image" fxLayout="row" fxLayoutAlign="end center">
+            <!-- {{ this.fileToUpload ? this.fileToUpload.name : 'Nenhuma selecionada..' }} -->
+            <mat-label class="name-image">NOME DA IMAGE </mat-label>
+            <input #imageUpload hidden="true" type="file" onclick="this.value=null"
+              (change)="fileChangeEvent($event, index)" name="Image" accept="image/*" />
+            <button mat-stroked-button color="primary" (click)="imageUpload.click()">
+              <mat-icon>file_upload</mat-icon> Selecionar
+            </button>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- <div class="buttons-form-right">
-      <button mat-button (click)="saveAboutMain()">Salvar</button>
+    <div class="buttons-form-right">
+      <button mat-button (click)="save()">Salvar</button>
       <button mat-button (click)="addItem()">Adicionar Item</button>
-    </div> -->
+    </div>
   </mat-expansion-panel>
 </mat-accordion>
