@@ -9,6 +9,7 @@ import { UploadImageModel } from '../models/upload-image';
 export class ImageUploadService {
 
   readonly api = environment.apiUrl;
+  readonly img = environment.apiImg; //usado nos cruds
 
   constructor(private httpClient: HttpClient) { }
 
@@ -22,6 +23,6 @@ export class ImageUploadService {
     const headers = new HttpHeaders({ 'enctype': 'multipart/form-data' });
 
     return this.httpClient.post(`${this.api}/upload-images`, formData, { headers: headers })
-      .toPromise().then((post) => console.log(post));
+      .toPromise().then((post) => post);
   };
 }

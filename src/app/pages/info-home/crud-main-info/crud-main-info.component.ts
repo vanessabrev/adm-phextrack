@@ -33,9 +33,6 @@ export class CrudMainInfoComponent implements OnInit {
     });
   }
 
-  updateMainInfo(): void {
-    this.infoHomeService.updateInfoMain(this.mainInfoHome);
-  }
 
   fileChangeEvent(fileInput: any) {
     this.fileToUpload = fileInput.target.files[0];
@@ -45,13 +42,28 @@ export class CrudMainInfoComponent implements OnInit {
     let newImageData = new UploadImageModel();
     newImageData.image = this.fileToUpload;
     newImageData.local = 'info-main';
-    newImageData.name = 'background';
+    newImageData.name = 'background' + this.getTimeLocal();
 
     this.imageUploadService.uploadImage(newImageData).then((result) => {
-      console.log('result', result)
-    }, (error) => {
-      console.error(error);
-    });
+      this.mainInfoHome.image = this.imageUploadService.img + result.path;
+      this.updateMainInfo();
+    }, (error: any) => console.error(error));
   }
 
+  save(): void {
+    if (this.fileToUpload) {
+    this.uploadImagetoStorageContainer();
+    return;
+    }
+
+    this.updateMainInfo();
+  }
+
+  updateMainInfo(): void {
+    this.infoHomeService.updateInfoMain(this.mainInfoHome);
+  }
+
+  getTimeLocal(): string {
+    return '-' + new Date().getTime();
+  }
 }
