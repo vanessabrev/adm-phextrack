@@ -1,0 +1,20 @@
+<div fxLayout="row" fxLayoutAlign="center center" class="row-height">
+  <mat-card fxFlex="30%">
+    <mat-card-title>Login</mat-card-title>
+
+    <mat-card-content fxLayout="column">
+      <mat-form-field>
+        <input matInput (input)="loginData.username = $event.target.value" [value]='loginData.username'
+          placeholder="Usuário" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput (input)="loginData.password = $event.target.value" [value]='loginData.password'
+          placeholder="Senha" />
+      </mat-form-field>
+    </mat-card-content>
+
+
+    <button class="buttons-form-right" mat-raised-button color="accent" (click)="login()">Entrar</button>
+  </mat-card>
+</div>

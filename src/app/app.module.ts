@@ -28,6 +28,7 @@ import { UsersListComponent } from './pages/users/users-list/users-list.componen
 import { CrudAboutUsComponent } from './pages/about-us/crud-about-us/crud-about-us.component';
 import { CrudAboutItemComponent } from './pages/about-us/crud-about-item/crud-about-item.component';
 import { CrudAboutGalleryComponent } from './pages/about-us/crud-about-gallery/crud-about-gallery.component';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { CrudAboutGalleryComponent } from './pages/about-us/crud-about-gallery/c
     CrudAboutUsComponent,
     CrudAboutItemComponent,
     CrudAboutGalleryComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

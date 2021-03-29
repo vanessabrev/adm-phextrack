@@ -4,6 +4,7 @@ import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
 import { HomeComponent } from './pages/home/home.component';
 import { InfoHomeComponent } from './pages/info-home/info-home.component';
+import { LoginComponent } from './pages/login/login.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { SocialMediasComponent } from './pages/social-medias/social-medias.component';
@@ -11,6 +12,7 @@ import { UsersComponent } from './pages/users/users.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'info-home', component: InfoHomeComponent },
   { path: 'about-us', component: AboutUsComponent },
