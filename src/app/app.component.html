@@ -18,8 +18,12 @@
       [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
       <mat-nav-list>
         <a mat-list-item routerLink="." *ngFor="let nav of itemsNav" (click)="navigateTo(nav.url)">
-
           <span class="title-sidenav"> {{nav.title}} <mat-icon>keyboard_arrow_right</mat-icon> </span>
+          <mat-divider></mat-divider>
+        </a>
+
+         <a mat-list-item (click)="logout()">
+          <span class="title-sidenav">Sair</span>
           <mat-divider></mat-divider>
         </a>
 
