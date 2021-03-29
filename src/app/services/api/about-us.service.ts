@@ -8,6 +8,7 @@ import { NotificationTypeEnum } from 'src/app/models/notification.model';
 import { environment } from 'src/environments/environment';
 import { ErroLogService } from '../erro-log.service';
 import { NotificationService } from '../notification.service';
+import { TokenService } from '../token.service';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,7 @@ export class AboutUsService {
   constructor(
     private httpClient: HttpClient,
     private errorLog: ErroLogService,
+    private tokenService: TokenService,
     private notificationService: NotificationService
   ) { }
 
@@ -35,14 +37,14 @@ export class AboutUsService {
   /* -------------------------------------------------------------------------- */
 
   getAboutMain(): void {
-    this.httpClient.get<AboutMainModel>(`${this.api}/about-us`)
+    this.httpClient.get<AboutMainModel>(`${this.api}/about-us`, { headers: this.tokenService.headersOptions })
       .toPromise().then((aboutUs: AboutMainModel) => {
         this.aboutMainSubject.next(aboutUs[this.INDICE_UNICO]);
       }, err => this.errorLog.showError(err, 'AboutUsService'));
   }
 
   updateAboutMain(aboutUs: AboutMainModel): void {
-    this.httpClient.put<AboutMainModel>(`${this.api}/about-us/` + aboutUs.id, aboutUs)
+    this.httpClient.put<AboutMainModel>(`${this.api}/about-us/` + aboutUs.id, aboutUs, { headers: this.tokenService.headersOptions })
       .toPromise().then((info: any) => {
         this.showNotification(info.message)
       }, err => this.errorLog.showError(err, 'AboutUsService'));
@@ -53,28 +55,28 @@ export class AboutUsService {
   /* -------------------------------------------------------------------------- */
 
   getAboutItensInfo(): void {
-    this.httpClient.get<Array<AboutItensInfoModel>>(`${this.api}/about-item`)
+    this.httpClient.get<Array<AboutItensInfoModel>>(`${this.api}/about-item`, { headers: this.tokenService.headersOptions })
       .toPromise().then((aboutItensInfo: Array<AboutItensInfoModel>) => {
         this.aboutItensInfoSubject.next(aboutItensInfo);
       }, err => this.errorLog.showError(err, 'AboutUsService'));
   }
 
   saveAboutItensInfo(aboutItensInfo: AboutItensInfoModel): void {
-    this.httpClient.post<AboutItensInfoModel>(`${this.api}/about-item`, aboutItensInfo)
+    this.httpClient.post<AboutItensInfoModel>(`${this.api}/about-item`, aboutItensInfo, { headers: this.tokenService.headersOptions })
       .toPromise().then((info: any) => {
         this.showNotification(info.message)
       }, err => this.errorLog.showError(err, 'AboutUsService'));
   }
 
   updateAboutItensInfo(aboutItensInfo: AboutItensInfoModel): void {
-    this.httpClient.put<AboutItensInfoModel>(`${this.api}/about-item/` + aboutItensInfo.id, aboutItensInfo)
+    this.httpClient.put<AboutItensInfoModel>(`${this.api}/about-item/` + aboutItensInfo.id, aboutItensInfo, { headers: this.tokenService.headersOptions })
       .toPromise().then((info: any) => {
         this.showNotification(info.message)
       }, err => this.errorLog.showError(err, 'AboutUsService'));
   }
 
   deleteAboutItensInfo(aboutItensInfo: AboutItensInfoModel): void {
-    this.httpClient.delete<AboutItensInfoModel>(`${this.api}/about-item/` + aboutItensInfo.id)
+    this.httpClient.delete<AboutItensInfoModel>(`${this.api}/about-item/` + aboutItensInfo.id, { headers: this.tokenService.headersOptions })
       .toPromise().then((info: any) => {
         this.showNotification(info.message)
       }, err => this.errorLog.showError(err, 'AboutUsService'));
@@ -85,28 +87,28 @@ export class AboutUsService {
   /* -------------------------------------------------------------------------- */
 
   getAboutGallery(): void {
-    this.httpClient.get<Array<AboutItensGalleryModel>>(`${this.api}/about-gallery`)
+    this.httpClient.get<Array<AboutItensGalleryModel>>(`${this.api}/about-gallery`, { headers: this.tokenService.headersOptions })
       .toPromise().then((aboutGallery: Array<AboutItensGalleryModel>) => {
         this.aboutItensGallerySubject.next(aboutGallery);
       }, err => this.errorLog.showError(err, 'AboutUsService'));
   }
 
   saveAboutGallery(aboutGallery: AboutItensGalleryModel): void {
-    this.httpClient.post<AboutItensGalleryModel>(`${this.api}/about-gallery`, aboutGallery)
+    this.httpClient.post<AboutItensGalleryModel>(`${this.api}/about-gallery`, aboutGallery, { headers: this.tokenService.headersOptions })
       .toPromise().then((info: any) => {
         this.showNotification(info.message)
       }, err => this.errorLog.showError(err, 'AboutUsService'));
   }
 
   updateAboutGallery(aboutGallery: AboutItensGalleryModel): void {
-    this.httpClient.put<AboutItensGalleryModel>(`${this.api}/about-gallery/` + aboutGallery.id, aboutGallery)
+    this.httpClient.put<AboutItensGalleryModel>(`${this.api}/about-gallery/` + aboutGallery.id, aboutGallery, { headers: this.tokenService.headersOptions })
       .toPromise().then((info: any) => {
         this.showNotification(info.message)
       }, err => this.errorLog.showError(err, 'AboutUsService'));
   }
 
   deleteAboutGallery(aboutGallery: AboutItensGalleryModel): void {
-    this.httpClient.delete<AboutItensGalleryModel>(`${this.api}/about-gallery/` + aboutGallery.id)
+    this.httpClient.delete<AboutItensGalleryModel>(`${this.api}/about-gallery/` + aboutGallery.id, { headers: this.tokenService.headersOptions })
       .toPromise().then((info: any) => {
         this.showNotification(info.message)
       }, err => this.errorLog.showError(err, 'AboutUsService'));

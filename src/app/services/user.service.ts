@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { UserModel } from '../models/user.model';
 import { ErroLogService } from './erro-log.service';
 import { NotificationService } from './notification.service';
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ export class UserService {
   constructor(
     private httpClient: HttpClient,
     private errorLog: ErroLogService,
+    private tokenService: TokenService,
     private notificationService: NotificationService
   ) { }
 
@@ -24,27 +26,27 @@ export class UserService {
   /* -------------------------------------------------------------------------- */
 
   getUsers(): void {
-    this.httpClient.get<Array<UserModel>>(`${this.api}/users`)
+    this.httpClient.get<Array<UserModel>>(`${this.api}/users`, { headers: this.tokenService.headersOptions })
       .toPromise().then((users: Array<UserModel>) => {
       }, err => this.errorLog.showError(err, 'UserService'));
   }
 
   saveUser(user: UserModel): void {
-    this.httpClient.post<UserModel>(`${this.api}/users`, user)
+    this.httpClient.post<UserModel>(`${this.api}/users`, user, { headers: this.tokenService.headersOptions })
       .toPromise().then((info: any) => {
         this.showNotification(info.message)
       }, err => this.errorLog.showError(err, 'UserService'));
   }
 
   updateUser(user: UserModel): void {
-    this.httpClient.put<UserModel>(`${this.api}/users/` + user.id, user)
+    this.httpClient.put<UserModel>(`${this.api}/users/` + user.id, user, { headers: this.tokenService.headersOptions })
       .toPromise().then((info: any) => {
         this.showNotification(info.message)
       }, err => this.errorLog.showError(err, 'UserService'));
   }
 
   deleteUser(user: UserModel): void {
-    this.httpClient.delete<UserModel>(`${this.api}/users/` + user.id)
+    this.httpClient.delete<UserModel>(`${this.api}/users/` + user.id, { headers: this.tokenService.headersOptions })
       .toPromise().then((info: any) => {
         this.showNotification(info.message)
       }, err => this.errorLog.showError(err, 'UserService'));

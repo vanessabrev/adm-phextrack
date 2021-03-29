@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -8,6 +8,7 @@ import { LoginModel } from '../models/login.model';
 import { UserModel } from '../models/user.model';
 import { ErroLogService } from './erro-log.service';
 import { NotificationService } from './notification.service';
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ export class LoginService {
   constructor(
     private httpClient: HttpClient,
     private errorLog: ErroLogService,
+    private tokenService: TokenService,
     private router: Router,
     private notificationService: NotificationService
   ) { }
@@ -33,9 +35,7 @@ export class LoginService {
     formData.append('email', 'teste@teste.com');
     formData.append('password', '12345678');
 
-    const headers = new HttpHeaders({ 'enctype': 'multipart/form-data' });
-
-    this.httpClient.post<any>(`${this.api}/auth/login`, formData, { headers: headers })
+    this.httpClient.post<any>(`${this.api}/auth/login`, formData, { headers: this.tokenService.headersOptions })
       .toPromise().then((info: any) => {
         if (info && info.access_token) {
           localStorage.setItem('access_token', info.access_token);
@@ -51,8 +51,7 @@ export class LoginService {
   /* -------------------------------------------------------------------------- */
 
   verifyUserLogged(): Observable<UserModel> {
-    const headers = new HttpHeaders({ 'Authorization': `Bearer ${this.token}` })
-    return this.httpClient.post<UserModel>(`${this.api}/auth/logged`, {}, { headers: headers });
+    return this.httpClient.post<UserModel>(`${this.api}/auth/logged`, {}, { headers: this.tokenService.headersOptions });
   }
 
 
@@ -61,33 +60,13 @@ export class LoginService {
   /* -------------------------------------------------------------------------- */
 
   logoutApi(): Observable<any> {
-    const headers = new HttpHeaders({ 'Authorization': `Bearer ${this.token}` })
-    return this.httpClient.post<UserModel>(`${this.api}/auth/logout`, {}, { headers: headers });
-  }
-
-
-  /* -------------------------------------------------------------------------- */
-  /*                                   REFRESH TOKEN                            */
-  /* -------------------------------------------------------------------------- */
-
-  refreshToken(): void {
-    const headers = new HttpHeaders({ 'Authorization': `Bearer ${this.token}` })
-    this.httpClient.post<UserModel>(`${this.api}/auth/refresh`, {}, { headers: headers })
-      .toPromise().then((info: any) => {
-        if (info && info.access_token) {
-          localStorage.setItem('access_token', info.access_token);
-        }
-      }, err => this.errorLog.showError(err, 'LoginService'));
+    return this.httpClient.post<UserModel>(`${this.api}/auth/logout`, {}, { headers: this.tokenService.headersOptions });
   }
 
 
   /* -------------------------------------------------------------------------- */
   /*                                   GENERAL                                  */
   /* -------------------------------------------------------------------------- */
-
-  get token() {
-    return localStorage.getItem('access_token');
-  }
 
   showNotification(message: string): void {
     let type = NotificationTypeEnum.info;

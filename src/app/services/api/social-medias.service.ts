@@ -6,6 +6,7 @@ import { SocialMediaModel } from 'src/app/models/social-media.model';
 import { environment } from 'src/environments/environment';
 import { ErroLogService } from '../erro-log.service';
 import { NotificationService } from '../notification.service';
+import { TokenService } from '../token.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,21 +23,21 @@ export class SocialMediasService {
   constructor(
     private httpClient: HttpClient,
     private errorLog: ErroLogService,
+    private tokenService: TokenService,
     private notificationService: NotificationService
   ) {
     this.getSocialMedias();
   }
 
   getSocialMedias(): void {
-    this.httpClient.get<Array<SocialMediaModel>>(`${this.api}/social-media`)
+    this.httpClient.get<Array<SocialMediaModel>>(`${this.api}/social-media`, { headers: this.tokenService.headersOptions })
       .toPromise().then((socialMedias: Array<SocialMediaModel>) => {
         this.socialMediasSubject.next(socialMedias[this.INDICE_UNICO]);
       }, err => this.errorLog.showError(err, 'SocialMediasService'));
   }
 
- updateSocialMedias(newSocialMedias: SocialMediaModel) {
-console.log('newSocialMedias', newSocialMedias)
-    this.httpClient.put<SocialMediaModel>(`${this.api}/social-media/` + newSocialMedias.id, newSocialMedias)
+  updateSocialMedias(newSocialMedias: SocialMediaModel) {
+    this.httpClient.put<SocialMediaModel>(`${this.api}/social-media/` + newSocialMedias.id, newSocialMedias, { headers: this.tokenService.headersOptions })
       .toPromise().then((info: any) => {
         this.showNotification(info.message)
       }, err => this.errorLog.showError(err, 'SocialMediasService'));

@@ -9,6 +9,7 @@ import { NotificationTypeEnum } from 'src/app/models/notification.model';
 import { environment } from 'src/environments/environment';
 import { ErroLogService } from '../erro-log.service';
 import { NotificationService } from '../notification.service';
+import { TokenService } from '../token.service';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,7 @@ export class InfoHomeService {
   constructor(
     private httpClient: HttpClient,
     private errorLog: ErroLogService,
+    private tokenService: TokenService,
     private notificationService: NotificationService
   ) {
     this.getInfoHome();
@@ -41,14 +43,14 @@ export class InfoHomeService {
   /* -------------------------------------------------------------------------- */
 
   getInfoMain(): void {
-    this.httpClient.get<MainInfoResponseModel>(`${this.api}/info-main`)
+    this.httpClient.get<MainInfoResponseModel>(`${this.api}/info-main`, { headers: this.tokenService.headersOptions })
       .toPromise().then((infos: MainInfoResponseModel) => {
         this.mainHomeSubject.next(infos[0]);
       }, err => this.errorLog.showError(err, 'MainInfoHomeService'));
   }
 
   updateInfoMain(mainInfoHome: MainInfoHomeModel): void {
-    this.httpClient.put<MainInfoHomeModel>(`${this.api}/info-main/` + mainInfoHome.id, mainInfoHome)
+    this.httpClient.put<MainInfoHomeModel>(`${this.api}/info-main/` + mainInfoHome.id, mainInfoHome, { headers: this.tokenService.headersOptions })
       .toPromise().then((info: any) => {
         this.showNotification(info.message)
       }, err => this.errorLog.showError(err, 'InfoHomeService'));
@@ -59,14 +61,14 @@ export class InfoHomeService {
   /* -------------------------------------------------------------------------- */
 
   getInfoHome(): void {
-    this.httpClient.get<Array<InfoHomeModel>>(`${this.api}/info-home`)
+    this.httpClient.get<Array<InfoHomeModel>>(`${this.api}/info-home`, { headers: this.tokenService.headersOptions })
       .toPromise().then((infos: Array<InfoHomeModel>) => {
         this.infoHomesSubject.next(infos);
       }, err => this.errorLog.showError(err, 'InfoHomeService'));
   }
 
   saveInfoHome(newInfo: InfoHomeModel): void {
-    this.httpClient.post<InfoHomeModel>(`${this.api}/info-home/`, newInfo)
+    this.httpClient.post<InfoHomeModel>(`${this.api}/info-home/`, newInfo, { headers: this.tokenService.headersOptions })
       .toPromise().then((info: any) => {
         console.log('info', info)
         this.showNotification(info.message)
@@ -74,7 +76,7 @@ export class InfoHomeService {
   }
 
   updateInfoHome(newInfo: InfoHomeModel): void {
-    this.httpClient.put<InfoHomeModel>(`${this.api}/info-home/` + newInfo.id, newInfo)
+    this.httpClient.put<InfoHomeModel>(`${this.api}/info-home/` + newInfo.id, newInfo, { headers: this.tokenService.headersOptions })
       .toPromise().then((info: any) => {
         console.log('info', info)
         this.showNotification(info.message)
@@ -82,7 +84,7 @@ export class InfoHomeService {
   }
 
   deleteInfoHome(newInfo: InfoHomeModel): void {
-    this.httpClient.delete<InfoHomeModel>(`${this.api}/info-home/` + newInfo.id)
+    this.httpClient.delete<InfoHomeModel>(`${this.api}/info-home/` + newInfo.id, { headers: this.tokenService.headersOptions })
       .toPromise().then((info: any) => {
         console.log('info', info)
         this.showNotification(info.message)
@@ -94,28 +96,28 @@ export class InfoHomeService {
   /* -------------------------------------------------------------------------- */
 
   getMenus(): void {
-    this.httpClient.get<Array<MenuModel>>(`${this.api}/menu`)
+    this.httpClient.get<Array<MenuModel>>(`${this.api}/menu`, { headers: this.tokenService.headersOptions })
       .toPromise().then((menus: Array<MenuModel>) => {
         this.menusSubject.next(menus);
       }, err => this.errorLog.showError(err, 'MainInfoHomeService'));
   }
 
   saveMenus(menu: MenuModel): void {
-    this.httpClient.post<MenuModel>(`${this.api}/menu/` + menu.id, menu)
+    this.httpClient.post<MenuModel>(`${this.api}/menu/` + menu.id, menu, { headers: this.tokenService.headersOptions })
       .toPromise().then((info: any) => {
         this.showNotification(info.message)
       }, err => this.errorLog.showError(err, 'InfoHomeService'));
   }
 
   updateMenus(menu: MenuModel): void {
-    this.httpClient.put<MenuModel>(`${this.api}/menu/` + menu.id, menu)
+    this.httpClient.put<MenuModel>(`${this.api}/menu/` + menu.id, menu, { headers: this.tokenService.headersOptions })
       .toPromise().then((info: any) => {
         this.showNotification(info.message)
       }, err => this.errorLog.showError(err, 'InfoHomeService'));
   }
 
   deleteMenus(menu: MenuModel): void {
-    this.httpClient.delete<MenuModel>(`${this.api}/menu/` + menu.id)
+    this.httpClient.delete<MenuModel>(`${this.api}/menu/` + menu.id, { headers: this.tokenService.headersOptions })
       .toPromise().then((info: any) => {
         this.showNotification(info.message)
       }, err => this.errorLog.showError(err, 'InfoHomeService'));

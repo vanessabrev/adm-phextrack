@@ -8,6 +8,7 @@ import { NotificationTypeEnum } from 'src/app/models/notification.model';
 import { environment } from 'src/environments/environment';
 import { ErroLogService } from '../erro-log.service';
 import { NotificationService } from '../notification.service';
+import { TokenService } from '../token.service';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,7 @@ export class ContactService {
   constructor(
     private httpClient: HttpClient,
     private errorLog: ErroLogService,
+    private tokenService: TokenService,
     private notificationService: NotificationService
   ) { }
 
@@ -37,28 +39,28 @@ export class ContactService {
   /* -------------------------------------------------------------------------- */
 
   getPhones(): void {
-    this.httpClient.get<Array<PhoneModel>>(`${this.api}/contact-phone`)
+    this.httpClient.get<Array<PhoneModel>>(`${this.api}/contact-phone`, { headers: this.tokenService.headersOptions })
       .toPromise().then((phones: Array<PhoneModel>) => {
         this.phonesSubject.next(phones);
       }, err => this.errorLog.showError(err, 'ContactService'));
   }
 
   savePhone(phone: PhoneModel): void {
-    this.httpClient.post<PhoneModel>(`${this.api}/contact-phone`, phone)
+    this.httpClient.post<PhoneModel>(`${this.api}/contact-phone`, phone, { headers: this.tokenService.headersOptions })
       .toPromise().then((info: any) => {
         this.showNotification(info.message)
       }, err => this.errorLog.showError(err, 'ContactService'));
   }
 
   updatePhone(phone: PhoneModel): void {
-    this.httpClient.put<PhoneModel>(`${this.api}/contact-phone/` + phone.id, phone)
+    this.httpClient.put<PhoneModel>(`${this.api}/contact-phone/` + phone.id, phone, { headers: this.tokenService.headersOptions })
       .toPromise().then((info: any) => {
         this.showNotification(info.message)
       }, err => this.errorLog.showError(err, 'ContactService'));
   }
 
   deletePhone(phone: PhoneModel): void {
-    this.httpClient.delete<PhoneModel>(`${this.api}/contact-phone/` + phone.id)
+    this.httpClient.delete<PhoneModel>(`${this.api}/contact-phone/` + phone.id, { headers: this.tokenService.headersOptions })
       .toPromise().then((info: any) => {
         this.showNotification(info.message)
       }, err => this.errorLog.showError(err, 'ContactService'));
@@ -69,28 +71,28 @@ export class ContactService {
   /* -------------------------------------------------------------------------- */
 
   getEmails(): void {
-    this.httpClient.get<Array<EmailModel>>(`${this.api}/contact-email`)
+    this.httpClient.get<Array<EmailModel>>(`${this.api}/contact-email`, { headers: this.tokenService.headersOptions })
       .toPromise().then((emails: Array<EmailModel>) => {
         this.emailsSubject.next(emails);
       }, err => this.errorLog.showError(err, 'ContactService'));
   }
 
   saveEmail(email: EmailModel): void {
-    this.httpClient.post<EmailModel>(`${this.api}/contact-email`, email)
+    this.httpClient.post<EmailModel>(`${this.api}/contact-email`, email, { headers: this.tokenService.headersOptions })
       .toPromise().then((info: any) => {
         this.showNotification(info.message)
       }, err => this.errorLog.showError(err, 'ContactService'));
   }
 
   updateEmail(email: EmailModel): void {
-    this.httpClient.put<EmailModel>(`${this.api}/contact-email/` + email.id, email)
+    this.httpClient.put<EmailModel>(`${this.api}/contact-email/` + email.id, email, { headers: this.tokenService.headersOptions })
       .toPromise().then((info: any) => {
         this.showNotification(info.message)
       }, err => this.errorLog.showError(err, 'ContactService'));
   }
 
   deleteEmail(email: EmailModel): void {
-    this.httpClient.delete<EmailModel>(`${this.api}/contact-email/` + email.id)
+    this.httpClient.delete<EmailModel>(`${this.api}/contact-email/` + email.id, { headers: this.tokenService.headersOptions })
       .toPromise().then((info: any) => {
         this.showNotification(info.message)
       }, err => this.errorLog.showError(err, 'ContactService'));
@@ -101,28 +103,28 @@ export class ContactService {
   /* -------------------------------------------------------------------------- */
 
   getAdresses(): void {
-    this.httpClient.get<Array<AddressModel>>(`${this.api}/contact-address`)
+    this.httpClient.get<Array<AddressModel>>(`${this.api}/contact-address`, { headers: this.tokenService.headersOptions })
       .toPromise().then((adresses: Array<AddressModel>) => {
         this.adressesSubject.next(adresses);
       }, err => this.errorLog.showError(err, 'ContactService'));
   }
 
   saveAddress(address: AddressModel): void {
-    this.httpClient.post<AddressModel>(`${this.api}/contact-address`, address)
+    this.httpClient.post<AddressModel>(`${this.api}/contact-address`, address, { headers: this.tokenService.headersOptions })
       .toPromise().then((info: any) => {
         this.showNotification(info.message)
       }, err => this.errorLog.showError(err, 'ContactService'));
   }
 
   updateAddress(address: AddressModel): void {
-    this.httpClient.put<AddressModel>(`${this.api}/contact-address/` + address.id, address)
+    this.httpClient.put<AddressModel>(`${this.api}/contact-address/` + address.id, address, { headers: this.tokenService.headersOptions })
       .toPromise().then((info: any) => {
         this.showNotification(info.message)
       }, err => this.errorLog.showError(err, 'ContactService'));
   }
 
   deleteAddress(address: AddressModel): void {
-    this.httpClient.delete<AddressModel>(`${this.api}/contact-address/` + address.id)
+    this.httpClient.delete<AddressModel>(`${this.api}/contact-address/` + address.id, { headers: this.tokenService.headersOptions })
       .toPromise().then((info: any) => {
         this.showNotification(info.message)
       }, err => this.errorLog.showError(err, 'ContactService'));
