@@ -32,8 +32,8 @@ export class LoginService {
 
   loginApi(loginData: LoginModel): void {
     const formData = new FormData();
-    formData.append('email', 'teste@teste.com');
-    formData.append('password', '12345678');
+    formData.append('email', loginData.email);
+    formData.append('password', loginData.password);
 
     this.httpClient.post<any>(`${this.api}/auth/login`, formData, { headers: this.tokenService.headersOptions })
       .toPromise().then((info: any) => {
