@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { NotificationTypeEnum } from 'src/app/models/notification.model';
 import { environment } from 'src/environments/environment';
 import { UserModel } from '../models/user.model';
@@ -14,12 +15,17 @@ export class UserService {
 
   readonly api = environment.apiUrl;
 
+  private usersListSubject = new Subject<Array<UserModel>>();
+  usersList$ = this.usersListSubject.asObservable();
+
   constructor(
     private httpClient: HttpClient,
     private errorLog: ErroLogService,
     private tokenService: TokenService,
     private notificationService: NotificationService
-  ) { }
+  ) {
+    this.getUsers();
+  }
 
   /* -------------------------------------------------------------------------- */
   /*                                 CRUD USER                                */
@@ -28,6 +34,8 @@ export class UserService {
   getUsers(): void {
     this.httpClient.get<Array<UserModel>>(`${this.api}/users`, { headers: this.tokenService.headersOptions })
       .toPromise().then((users: Array<UserModel>) => {
+        console.log('12356 users', users)
+        this.usersListSubject.next(users);
       }, err => this.errorLog.showError(err, 'UserService'));
   }
 
