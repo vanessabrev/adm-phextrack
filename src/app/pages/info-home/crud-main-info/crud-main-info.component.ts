@@ -23,16 +23,15 @@ export class CrudMainInfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getMainInfo();
+    this.setMainInfo();
+    this.infoHomeService.getInfoMain(); // start
   }
 
-  getMainInfo(): void {
+  setMainInfo(): void {
     this.infoHomeService.mainHome$.subscribe((mainInfoHome: MainInfoHomeModel) => {
       this.mainInfoHome = mainInfoHome;
-      console.log('mainInfoHome', mainInfoHome)
     });
   }
-
 
   fileChangeEvent(fileInput: any) {
     this.fileToUpload = fileInput.target.files[0];

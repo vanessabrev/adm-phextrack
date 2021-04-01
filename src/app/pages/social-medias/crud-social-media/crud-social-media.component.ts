@@ -16,6 +16,7 @@ export class CrudSocialMediaComponent implements OnInit {
 
   ngOnInit(): void {
     this.setSocialMedias();
+    this.socialMediasService.getSocialMedias(); // start
   }
 
   setSocialMedias(): void {

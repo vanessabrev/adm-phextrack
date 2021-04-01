@@ -32,11 +32,7 @@ export class InfoHomeService {
     private errorLog: ErroLogService,
     private tokenService: TokenService,
     private notificationService: NotificationService
-  ) {
-    this.getInfoHome();
-    this.getInfoMain();
-    this.getMenus();
-  }
+  ) { }
 
   /* -------------------------------------------------------------------------- */
   /*                               CRUD MAIN INFO                               */

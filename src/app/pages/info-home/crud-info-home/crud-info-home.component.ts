@@ -25,10 +25,11 @@ export class CrudInfoHomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getListMenus();
+    this.setListMenus();
+    this.infoHomeService.getInfoHome(); // start
   }
 
-  getListMenus(): void {
+  setListMenus(): void {
     this.infoHomeService.infoHome$.subscribe((infoHomes: Array<InfoHomeModel>) => {
       this.mainItemInfoHome = infoHomes.filter((info) => info.id === this.ID_MAIN_INFO)[0];
       this.itensInfoHome = infoHomes.filter((info) => info.id !== this.ID_MAIN_INFO);

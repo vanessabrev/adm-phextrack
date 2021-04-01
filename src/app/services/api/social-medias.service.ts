@@ -25,9 +25,7 @@ export class SocialMediasService {
     private errorLog: ErroLogService,
     private tokenService: TokenService,
     private notificationService: NotificationService
-  ) {
-    this.getSocialMedias();
-  }
+  ) { }
 
   getSocialMedias(): void {
     this.httpClient.get<Array<SocialMediaModel>>(`${this.api}/social-media`, { headers: this.tokenService.headersOptions })
