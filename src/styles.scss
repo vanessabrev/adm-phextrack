@@ -95,3 +95,14 @@ mat-spinner {
 .mat-accordion .mat-expansion-panel {
   margin: 1rem 0;
 }
+
+/* -------------------------------------------------------------------------- */
+/*                               Table                                        */
+/* -------------------------------------------------------------------------- */
+table {
+  width: 100%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}

@@ -23,9 +23,7 @@ export class UserService {
     private errorLog: ErroLogService,
     private tokenService: TokenService,
     private notificationService: NotificationService
-  ) {
-    this.getUsers();
-  }
+  ) { }
 
   /* -------------------------------------------------------------------------- */
   /*                                 CRUD USER                                */

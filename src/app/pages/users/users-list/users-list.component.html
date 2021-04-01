@@ -1,1 +1,50 @@
-<p>users-list works!</p>
+<mat-spinner *ngIf="usersList && !usersList.length"></mat-spinner>
+
+<table *ngIf="usersList && usersList.length" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  <!-- ['name', 'email', 'created_at', 'updated_at', 'deleted_at', 'actions']; -->
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <!-- Email Column -->
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+  </ng-container>
+
+  <!-- Created Column -->
+  <ng-container matColumnDef="created_at">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Data Criação </th>
+    <td mat-cell *matCellDef="let element"> {{element.created_at | date: 'dd/MM/yyyy'}} </td>
+  </ng-container>
+
+  <!-- Updated Column -->
+  <ng-container matColumnDef="updated_at">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Data Atualização </th>
+    <td mat-cell *matCellDef="let element"> {{element.updated_at | date: 'dd/MM/yyyy'}} </td>
+  </ng-container>
+
+
+  <!-- Deleted Column -->
+  <ng-container matColumnDef="deleted_at">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Data Exclusão </th>
+    <td mat-cell *matCellDef="let element"> {{element.deleted_at | date: 'dd/MM/yyyy'}} </td>
+  </ng-container>
+
+  <!-- Acoes Column -->
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Ações </th>
+    <td mat-cell *matCellDef="let element">
+      <div fxLayout="row" fxLayoutAlign="space-around center">
+        <mat-icon class="cursor-pointer">edit</mat-icon>
+        <mat-icon class="cursor-pointer">delete</mat-icon>
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
